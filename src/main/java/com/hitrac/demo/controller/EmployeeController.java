@@ -1,7 +1,7 @@
 package com.hitrac.demo.controller;
 
-import com.hitrac.demo.dto.EmployeeRequest;
-import com.hitrac.demo.dto.EmployeeResponse;
+import com.hitrac.demo.dto.EmployeeRequestDTO;
+import com.hitrac.demo.dto.EmployeeResponseDTO;
 import com.hitrac.demo.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.Response;
@@ -20,19 +20,19 @@ public class EmployeeController {
 
     @GetMapping("/getAll")
     @ResponseStatus(HttpStatus.OK)
-    public List<EmployeeResponse> getAllEmployee(){
+    public List<EmployeeResponseDTO> getAllEmployee(){
        return employeeService.getAllEmployee();
     }
 
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.OK)
-    public void createEmployee(EmployeeRequest employeeRequest){
-        employeeService.createEmployee(employeeRequest);
+    public void createEmployee(@RequestBody EmployeeRequestDTO employeeRequestDTO){
+        employeeService.createEmployee(employeeRequestDTO);
     }
 
     @PutMapping("/update")
-    public ResponseEntity updateEmployee(@PathVariable Long id,EmployeeRequest employeeRequest){
-       return employeeService.updateEmployee(id, employeeRequest);
+    public ResponseEntity updateEmployee(@PathVariable Long id, EmployeeRequestDTO employeeRequestDTO){
+       return employeeService.updateEmployee(id, employeeRequestDTO);
     }
     @DeleteMapping("/delete")
     @ResponseStatus(HttpStatus.ACCEPTED)

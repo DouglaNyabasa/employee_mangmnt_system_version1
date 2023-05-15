@@ -5,7 +5,7 @@ import lombok.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RegistrationResponse {
+public class RegistrationResponseDTO {
 
 	private String message;
 

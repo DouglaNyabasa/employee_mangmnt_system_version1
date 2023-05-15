@@ -1,6 +1,6 @@
 package com.hitrac.demo.service;
 
-import com.hitrac.demo.dto.LoginRequest;
+import com.hitrac.demo.dto.LoginRequestDTO;
 import com.hitrac.demo.model.User;
 import com.hitrac.demo.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public ResponseEntity login(LoginRequest request) {
+    public ResponseEntity login(LoginRequestDTO request) {
         request.getPassword();
 
         Optional<User> user = userRepository.findByUsername(request.getUsername());

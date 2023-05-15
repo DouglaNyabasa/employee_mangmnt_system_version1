@@ -1,12 +1,11 @@
 package com.hitrac.demo.controller;
 
-import com.hitrac.demo.dto.LoginRequest;
-import com.hitrac.demo.dto.RegistrationRequest;
+import com.hitrac.demo.dto.LoginRequestDTO;
+import com.hitrac.demo.dto.RegistrationRequestDTO;
 import com.hitrac.demo.model.User;
 import com.hitrac.demo.service.UserService;
 import org.apache.catalina.connector.Response;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,11 +21,11 @@ public class UserRegistrationAndLoginController {
         this.userService = userService;
     }
     @PostMapping("/register")
-    public ResponseEntity<Response> register( @RequestBody User user, RegistrationRequest registrationRequest){
+    public ResponseEntity<Response> register( @RequestBody User user, RegistrationRequestDTO registrationRequestDTO){
         return  userService.register(user);
     }
     @PostMapping("/login")
-    public ResponseEntity<Response> login( @RequestBody LoginRequest request){
+    public ResponseEntity<Response> login( @RequestBody LoginRequestDTO request){
         return  userService.login(request);
     }
 

@@ -27,8 +27,9 @@ public class SecurityConfiguration extends WebSecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.cors().and().csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/user/**","/employee/**","/department/**.").permitAll()
-                .anyRequest().authenticated()
+                .antMatchers("/user/**","/employee/**","/department/**.")
+                .permitAll().anyRequest()
+                .authenticated()
                 .and().build();
     }
 

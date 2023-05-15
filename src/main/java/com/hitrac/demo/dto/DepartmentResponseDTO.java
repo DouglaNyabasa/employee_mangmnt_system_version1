@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class DepartmentRequest {
+public class DepartmentResponseDTO {
     private String departmentName;
 }

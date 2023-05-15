@@ -1,5 +1,6 @@
 package com.hitrac.demo.dto;
 
+import com.hitrac.demo.model.Address;
 import com.hitrac.demo.model.Department;
 import com.hitrac.demo.model.Gender;
 import lombok.AllArgsConstructor;
@@ -11,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmployeeResponse {
+public class EmployeeResponseDTO {
 
     private  Long id;
     private  String firstname;
@@ -21,5 +22,6 @@ public class EmployeeResponse {
     private  String dateOfBirth;
     private  String phoneNumber;
     private Department department;
+    private Address address;
 
 }

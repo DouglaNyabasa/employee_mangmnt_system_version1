@@ -1,6 +1,6 @@
 package com.hitrac.demo.controller;
 
-import com.hitrac.demo.dto.DepartmentRequest;
+import com.hitrac.demo.dto.DepartmentRequestDTO;
 import com.hitrac.demo.model.Department;
 import com.hitrac.demo.service.DepartmentService;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +21,7 @@ private DepartmentService departmentService;
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Department> CreateDepartment (@RequestBody @Validated DepartmentRequest departmentRequestDTO){
+    public ResponseEntity<Department> CreateDepartment (@RequestBody @Validated DepartmentRequestDTO departmentRequestDTO){
         return  departmentService.CreateDepartment(departmentRequestDTO);
     }
 }

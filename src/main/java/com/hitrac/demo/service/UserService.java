@@ -1,7 +1,7 @@
 package com.hitrac.demo.service;
 
 
-import com.hitrac.demo.dto.LoginRequest;
+import com.hitrac.demo.dto.LoginRequestDTO;
 import com.hitrac.demo.model.User;
 import org.apache.catalina.connector.Response;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +12,6 @@ public interface UserService {
     ResponseEntity<Response> register(User user);
 
 
-    ResponseEntity<Response> login(LoginRequest request);
+    ResponseEntity<Response> login(LoginRequestDTO request);
 
 }

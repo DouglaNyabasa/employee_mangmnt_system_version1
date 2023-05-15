@@ -1,7 +1,7 @@
 package com.hitrac.demo.service;
 
-import com.hitrac.demo.dto.EmployeeRequest;
-import com.hitrac.demo.dto.EmployeeResponse;
+import com.hitrac.demo.dto.EmployeeRequestDTO;
+import com.hitrac.demo.dto.EmployeeResponseDTO;
 import com.hitrac.demo.model.Department;
 import com.hitrac.demo.model.Employee;
 import com.hitrac.demo.repository.DepartmentRepository;
@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @Service
 
-public class EmployeeService {
+public class EmployeeService  {
 
     private DepartmentRepository departmentRepository;
     private EmployeeRepository employeeRepository;
@@ -24,20 +24,20 @@ public class EmployeeService {
         this.employeeRepository = employeeRepository;
     }
 
-    public void createEmployee(EmployeeRequest employeeRequest){
+    public void createEmployee(EmployeeRequestDTO employeeRequestDTO){
 
-       Optional<Department> department = departmentRepository.findById(Long.valueOf(employeeRequest.getDepartmentId()));
+       Optional<Department> department = departmentRepository.findById(Long.valueOf(employeeRequestDTO.getDepartmentId()));
        if (!department.isPresent()){
            throw new  NullPointerException("Department not found");
        }
         Employee employee = Employee.builder()
-                .firstname(employeeRequest.getFirstname())
-                .secondName(employeeRequest.getSecondName())
+                .firstname(employeeRequestDTO.getFirstname())
+                .secondName(employeeRequestDTO.getSecondName())
                 .department(department.get())
-                .dateOfBirth(employeeRequest.getDateOfBirth())
-                .gender(employeeRequest.getGender())
-                .phoneNumber(employeeRequest.getPhoneNumber())
-                .email(employeeRequest.getEmail())
+                .dateOfBirth(employeeRequestDTO.getDateOfBirth())
+                .gender(employeeRequestDTO.getGender())
+                .phoneNumber(employeeRequestDTO.getPhoneNumber())
+                .email(employeeRequestDTO.getEmail())
                 .build();
         employeeRepository.save(employee);
     }
@@ -52,13 +52,13 @@ public class EmployeeService {
             return ResponseEntity.ok().body("Employee Not Found!!!");
     }
 
-    public ResponseEntity updateEmployee(Long id,EmployeeRequest employeeRequest){
+    public ResponseEntity updateEmployee(Long id, EmployeeRequestDTO employeeRequestDTO){
         Optional<Employee> employee = employeeRepository.findById(id);
         if (employee.isPresent()){
             Employee employee1 = employee.get();
-            employee1.setFirstname(employeeRequest.getFirstname());
-            employee1.setSecondName(employeeRequest.getSecondName());
-            employee1.setEmail(employeeRequest.getSecondName());
+            employee1.setFirstname(employeeRequestDTO.getFirstname());
+            employee1.setSecondName(employeeRequestDTO.getSecondName());
+            employee1.setEmail(employeeRequestDTO.getSecondName());
 
             employeeRepository.save(employee1);
             return ResponseEntity.ok().body("Employee details has been updated");
@@ -68,12 +68,12 @@ public class EmployeeService {
 
     }
 
-    public List<EmployeeResponse> getAllEmployee(){
+    public List<EmployeeResponseDTO> getAllEmployee(){
         List<Employee> employees = employeeRepository.findAll();
         return employees.stream().map(this::mapToEmployeeResponse).toList() ;
 }
-    private EmployeeResponse mapToEmployeeResponse(Employee employee) {
-        return EmployeeResponse.builder()
+    private EmployeeResponseDTO mapToEmployeeResponse(Employee employee) {
+        return EmployeeResponseDTO.builder()
                 .id(employee.getId())
                 .firstname(employee.getFirstname())
                 .secondName(employee.getSecondName())
